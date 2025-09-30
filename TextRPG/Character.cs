@@ -11,6 +11,8 @@
         public int Armor { get; private set; }
         public int Hp { get; private set; }
         public int Gold { get; private set; }
+        public int Exp { get; private set; }
+        public int Stamina { get; private set; }
 
         public int BonusAttack { get; private set; }
         public int BonusArmor { get; private set; }
@@ -23,7 +25,9 @@
             Attack = 10;
             Armor = 5;
             Hp = 100;
-            Gold = 1500;
+            Gold = 10000;
+            Exp = 0;
+            Stamina = 20;
         }
 
         public Character(JobType newJob, int newAttack, int newArmor, int newHp, int newGold)
@@ -35,6 +39,8 @@
             Armor = newArmor;
             Hp = newHp;
             Gold = newGold;
+            Exp = 0;
+            Stamina = 20;
         }
 
         public void UpdateStats(List<Item> inventory)
@@ -60,6 +66,78 @@
             }
         }
 
+        public bool Adventure()
+        {
+            if (Stamina >= 10)
+            {
+                Stamina -= 10;
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool Patrol()
+        {
+            if (Stamina >= 5)
+            {
+                Stamina -= 5;
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool Train()
+        {
+            if (Stamina >= 15)
+            {
+                Stamina -= 15;
+                return true;
+            }
+
+            return false;
+        }
+
+        public int AddGold(int gold)
+        {
+            Gold += gold;
+            return Gold;
+        }
+
+        public int AddExp(int exp)
+        {
+            Exp += exp;
+            return Exp;
+        }
+
+        public int AddHp(int hp)
+        {
+            Hp = Math.Min(100, Hp + hp);
+            return Hp;
+        }
+
+        public int AddStamina(int stamina)
+        {
+            Stamina = Math.Min(20, Stamina + stamina);
+            return Stamina;
+        }
+
+        public int TakeGold(int gold)
+        {
+            if (Gold >= gold)
+                Gold -= gold;
+            return Gold;
+        }
+
+        public int TakeHp(int hp)
+        {
+            Hp -= hp;
+            if (Hp < 0)
+                Hp = 0;
+            return hp;
+        }
+
         public void DisplayInfo()
         {
             Console.WriteLine($"Lv. {Level}");
@@ -68,6 +146,8 @@
             Console.WriteLine($"방어력: {Armor + BonusArmor} {(BonusArmor != 0 ? $"(+{BonusArmor})" : "")}");
             Console.WriteLine($"체력: {Hp}");
             Console.WriteLine($"Gold: {Gold} G");
+            Console.WriteLine($"Exp: {Exp}");
+            Console.WriteLine($"스테미나: {Stamina}");
         }
     }
 }
