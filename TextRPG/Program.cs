@@ -600,8 +600,8 @@
 
                 // 능력치 반영
                 character.AddGold(finalGold);
-                character.AddExp(finalExp);
                 character.TakeHp(actualHpLoss);
+                character.AddExp(finalExp);
 
                 // 출력
                 Console.WriteLine("던전 클리어!");

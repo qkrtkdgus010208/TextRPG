@@ -1,4 +1,6 @@
-﻿namespace TextRPG
+﻿using System.Reflection.Emit;
+
+namespace TextRPG
 {
     public enum JobType { Warrior, Mage, Archer }
 
@@ -9,8 +11,10 @@
         public JobType Job { get; private set; }
         public int Attack { get; private set; }
         public int Armor { get; private set; }
+        public int MaxHp { get; private set; }
         public int Hp { get; private set; }
         public int Gold { get; private set; }
+        public int MaxExp { get; private set; }
         public int Exp { get; private set; }
         public int Stamina { get; private set; }
 
@@ -24,9 +28,10 @@
             Job = JobType.Warrior;
             Attack = 10;
             Armor = 5;
-            Hp = 100;
+            MaxHp = 100;
+            Hp = MaxHp;
             Gold = 10000;
-            Exp = 0;
+            MaxExp = 50;
             Stamina = 20;
         }
 
@@ -37,10 +42,19 @@
             Job = newJob;
             Attack = newAttack;
             Armor = newArmor;
-            Hp = newHp;
+            MaxHp = newHp;
+            Hp = MaxHp;
             Gold = newGold;
-            Exp = 0;
+            MaxExp = 50;
             Stamina = 20;
+        }
+
+        public void SetName(string name)
+        {
+            if (!string.IsNullOrWhiteSpace(name)) // 빈칸 입력도 방지
+            {
+                Name = name;
+            }
         }
 
         public void UpdateStats(List<Item> inventory)
@@ -108,7 +122,47 @@
         public int AddExp(int exp)
         {
             Exp += exp;
+            CheckExp();
             return Exp;
+        }
+
+        private void CheckExp()
+        {
+            while (Exp >= MaxExp)
+            {
+                AddExp(-MaxExp);
+                LevelUp();
+            }
+        }
+
+        private void LevelUp()
+        {
+            switch (Job)
+            {
+                case JobType.Warrior:
+                    MaxHp += 20;
+                    Attack += 3;
+                    Armor += 2;
+                    break;
+                case JobType.Mage:
+                    MaxHp += 20;
+                    Attack += 3;
+                    Armor += 2;
+                    break;
+                case JobType.Archer:
+                    MaxHp += 20;
+                    Attack += 3;
+                    Armor += 2;
+                    break;
+            }
+
+            Level++;
+            MaxExp = (int)(MaxExp * 1.2f);
+            Hp = MaxHp;
+
+            Console.WriteLine($"레벨 업!");
+            Console.WriteLine($"레벨이 {Level}로 상승했습니다.");
+            Console.WriteLine($"Hp가 회복됩니다.\n");
         }
 
         public int AddHp(int hp)
