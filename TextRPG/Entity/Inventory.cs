@@ -74,13 +74,13 @@ namespace TextRPG.Entity
 
         public IEnumerable<EquipItem> GetEquipments()
         {
-            // LINQ의 OfType<T>() 메서드를 사용하여 Item 목록에서 Equipment 타입만 추출합니다.
+            // LINQ의 OfType<T>() 메서드를 사용하여 Item 리스트에서 Equipment 타입만 추출합니다.
             return Items.OfType<EquipItem>();
         }
 
         public IEnumerable<ConsumeItem> GetConsumes()
         {
-            // LINQ의 OfType<T>() 메서드를 사용하여 Item 목록에서 ConsumeItem 타입만 추출합니다.
+            // LINQ의 OfType<T>() 메서드를 사용하여 Item 리스트에서 ConsumeItem 타입만 추출합니다.
             return Items.OfType<ConsumeItem>();
         }
     }

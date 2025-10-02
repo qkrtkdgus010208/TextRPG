@@ -45,7 +45,7 @@ namespace TextRPG.FSM.Scene.PlayerScene
 
             if (int.TryParse(input, out int choice) && choice > 0 && choice <= inventory.Items.Count - inventory.EquipItemCount)
             {
-                // 유효한 인덱스 선택 (배열 인덱스는 0부터 시작하므로 -1)
+                // 유효한 인덱스 선택
                 ConsumeItem selectedItem = (ConsumeItem)inventory.Items[inventory.EquipItemCount + choice - 1];
 
                 inventory.ConsumeItem(selectedItem);
