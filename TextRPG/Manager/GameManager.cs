@@ -1,6 +1,7 @@
 ﻿using TextRPG.Entity;
 using TextRPG.FSM;
 using TextRPG.Interface;
+using TextRPG.Item;
 
 namespace TextRPG
 {
@@ -20,10 +21,10 @@ namespace TextRPG
         }
 
         // 게임의 모든 데이터는 GameManager가 소유
-        public Character Character { get; private set; }
-        public List<Item> Inventory { get; private set; }
-        public List<Item> ShopItems { get; private set; }
-        public List<DungeonInfo> Dungeons { get; private set; }
+        public Character Character { get; set; }
+        public List<ItemBase> Inventory { get; set; }
+        public List<ItemBase> ShopItems { get; set; }
+        public List<DungeonInfo> Dungeons { get; set; }
         public Random Random { get; } = new Random();
         public bool IsGameOver { get; set; }
 

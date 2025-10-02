@@ -11,7 +11,7 @@ namespace TextRPG.FSM.Scene.PlayerScene
         {
         }
 
-        protected override void SetSceneTitle()
+        protected override void SetScene()
         {
             Console.Title = "캐릭터 생성";
         }

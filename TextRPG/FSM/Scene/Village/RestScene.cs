@@ -9,7 +9,7 @@ namespace TextRPG.FSM.Scene.Village
         {
         }
 
-        protected override void SetSceneTitle()
+        protected override void SetScene()
         {
             throw new NotImplementedException();
         }

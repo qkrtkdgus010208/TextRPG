@@ -1,10 +1,12 @@
 ﻿using TextRPG.Enum;
+using TextRPG.Item;
 
 namespace TextRPG.Entity
 {
 
     internal class Character
     {
+        // 생성자 주입
         public string Name { get; private set; }
         public int MaxHp { get; private set; }
         public int Hp { get; private set; }
@@ -15,14 +17,22 @@ namespace TextRPG.Entity
         public int Armor { get; private set; }
         public JobType Job { get; private set; }
 
+        // 초기 세팅값
         public int Level { get; private set; }
         public int Gold { get; private set; }
         public int MaxExp { get; private set; }
         public int Exp { get; private set; }
         public int Stamina { get; private set; }
 
+        // 아이템으로 얻은 추가 능력치
+        public int BonusMaxHp { get; private set; }
+        public int BonusMaxMp { get; private set; }
         public int BonusAttack { get; private set; }
+        public int BonusSkillAtack { get; private set; }
         public int BonusArmor { get; private set; }
+
+        // 인벤토리
+        public Inventory Inventory { get; private set; }
 
         public Character(string name, int maxHp, int maxMp, int attack, int skillAttack, int armor, JobType job)
         {
@@ -39,43 +49,80 @@ namespace TextRPG.Entity
             Level = 1;
             Gold = 5000;
             MaxExp = 100;
+            Exp = 0;
             Stamina = 100;
+
+            Inventory = new Inventory(this);
         }
 
-        public void UpdateStats(List<Item> inventory)
+        public void EquipItem(EquipItem item)
         {
-            // Bonus 능력치 초기화
-            BonusAttack = 0;
-            BonusArmor = 0;
+            item.IsEquipped = true;
 
-            // 인벤토리를 순회하며 장착된 아이템의 효과를 합산합니다.
-            foreach (var item in inventory)
-            {
-                if (item.IsEquipped)
-                {
-                    if (item.Type == ItemType.Weapon)
-                    {
-                        BonusAttack += item.EffectValue;
-                    }
-                    else if (item.Type == ItemType.Armor)
-                    {
-                        BonusArmor += item.EffectValue;
-                    }
-                }
-            }
+            BonusMaxHp += item.BonusMaxHp;
+            BonusMaxMp += item.BonusMaxMp;
+            BonusAttack += item.BonusAttack;
+            BonusSkillAtack += item.BonusSkillAttack;
+            BonusArmor += item.BonusArmor;
+
+            MaxHp += BonusMaxHp;
+            Hp += BonusMaxHp;
+            MaxMp += BonusMaxMp;
+            Mp += BonusMaxMp;
+            Attack += BonusAttack;
+            SkillAttack += BonusSkillAtack;
+            Armor += BonusArmor;
+        }
+
+        public void UnequipItem(EquipItem item)
+        {
+            item.IsEquipped = false;
+
+            BonusMaxHp -= item.BonusMaxHp;
+            BonusMaxMp -= item.BonusMaxMp;
+            BonusAttack -= item.BonusAttack;
+            BonusSkillAtack -= item.BonusSkillAttack;
+            BonusArmor -= item.BonusArmor;
+
+            MaxHp -= BonusMaxHp;
+            Hp -= BonusMaxHp;
+            MaxMp -= BonusMaxMp;
+            Mp -= BonusMaxMp;
+            Attack -= BonusAttack;
+            SkillAttack -= BonusSkillAtack;
+            Armor -= BonusArmor;
         }
 
         public int AddHp(int hp)
         {
-            Hp = Math.Min(100, Hp + hp);
+            Hp = Math.Min(MaxHp, Hp + hp);
             return Hp;
         }
-        public int TakeHp(int hp)
+
+        public bool TakeHp(int hp)
         {
-            Hp -= hp;
-            if (Hp < 0)
-                Hp = 0;
-            return hp;
+            if (Hp >= hp)
+            {
+                Hp -= hp;
+                return true;
+            }
+            return false;
+        }
+
+        public int AddMp(int mp)
+        {
+            Mp = Math.Min(MaxMp, Hp + mp);
+            return Mp;
+        }
+
+        public bool TakeMp(int mp)
+        {
+            if (Mp >= mp)
+            {
+                Mp -= mp;
+                return true;
+            }
+            return false;
         }
 
         public int AddStamina(int stamina)
@@ -154,12 +201,29 @@ namespace TextRPG.Entity
             }
 
             Level++;
-            MaxExp = (int)(MaxExp * 1.2f);
             Hp = MaxHp;
+            Mp = MaxMp;
+            MaxExp = (int)(MaxExp * 1.2f);
 
             Console.WriteLine($"레벨 업!");
             Console.WriteLine($"레벨이 {Level}로 상승했습니다.");
             Console.WriteLine($"Hp가 회복됩니다.\n");
+        }
+
+        public string DisplayInfo()
+        {
+            string s = string.Empty;
+            s += $"Lv. {Level}\n";
+            s += $"직업: {Job}\n";
+            s += $"HP: {Hp} / {MaxHp} {(BonusMaxHp != 0 ? $"(+{BonusMaxHp})" : "")}\n";
+            s += $"MP: {Mp} / {MaxMp} {(BonusMaxMp != 0 ? $"(+{BonusMaxMp})" : "")}\n";
+            s += $"공격력: {Attack} {(BonusAttack != 0 ? $"(+{BonusAttack})" : "")}\n";
+            s += $"주문력: {SkillAttack} {(BonusAttack != 0 ? $"(+{BonusAttack})" : "")}\n";
+            s += $"방어력: {Armor + BonusArmor} {(BonusArmor != 0 ? $"(+{BonusArmor})" : "")}\n";
+            s += $"Gold: {Gold} G\n";
+            s += $"Exp: {Exp} / {MaxExp}\n";
+            s += $"스테미나: {Stamina}\n";
+            return s;
         }
     }
 }

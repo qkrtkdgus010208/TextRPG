@@ -6,7 +6,7 @@
         {
         }
 
-        protected override void SetSceneTitle()
+        protected override void SetScene()
         {
             Console.Title = "마을";
         }

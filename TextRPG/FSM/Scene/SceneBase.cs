@@ -24,7 +24,7 @@ namespace TextRPG.FSM.Scene
         {
             // [템플릿] 씬 진입 시 화면 정리 및 메뉴 루프 시작
             Console.Clear();
-            SetSceneTitle(); // 자식 클래스에서 정의할 타이틀
+            SetScene();
         }
 
         public virtual void Update()
@@ -42,8 +42,8 @@ namespace TextRPG.FSM.Scene
 
         // 템플릿 메서드 (자식 클래스에서 반드시 구현)
 
-        // 씬의 제목을 출력합니다.
-        protected abstract void SetSceneTitle(); // Console.Title = "상점"
+        // 씬 제목 설정 및 캐싱
+        protected abstract void SetScene(); // Console.Title = "상점"
 
         // 씬의 메뉴 옵션을 출력합니다.
         protected abstract void View();

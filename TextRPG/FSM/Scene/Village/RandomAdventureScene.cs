@@ -9,7 +9,7 @@ namespace TextRPG.FSM.Scene.Village
         {
         }
 
-        protected override void SetSceneTitle()
+        protected override void SetScene()
         {
             Console.Title = "랜덤 모험";
         }

@@ -6,4 +6,26 @@
         Archer,
         Mage,
     }
+
+    public enum ItemType
+    {
+        Weapon,
+        Armor,
+        Potion,
+        Etc,
+    }
+
+    public enum EquipSlot
+    {
+        Weapon,
+        Armor,
+    }
+
+    public enum SceneType
+    {
+        Inventory,
+        InventoryManagement,
+        Shop,
+        ShopManagement,
+    }
 }

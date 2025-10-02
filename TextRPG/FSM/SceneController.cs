@@ -17,6 +17,7 @@ namespace TextRPG.FSM
         public ISceneState DungeonScene { get; private set; }
 
         // 캐릭터/인벤토리/장비 관련
+        public ISceneState ConsumptionScene { get; private set; }
         public ISceneState CreateCharacterScene { get; private set; }
         public ISceneState EquipmentScene { get; private set; }
         public ISceneState InventoryScene { get; private set; }
@@ -39,6 +40,7 @@ namespace TextRPG.FSM
             DungeonScene = new DungeonScene(this);
 
             // 캐릭터/인벤토리/장비 관련
+            ConsumptionScene = new ConsumptionScene(this);
             CreateCharacterScene = new CreateCharacterScene(this);
             EquipmentScene = new EquipmentScene(this);
             InventoryScene = new InventoryScene(this);
