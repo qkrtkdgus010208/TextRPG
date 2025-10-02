@@ -20,12 +20,4 @@
         Weapon,
         Armor,
     }
-
-    public enum SceneType
-    {
-        Inventory,
-        InventoryManagement,
-        Shop,
-        ShopManagement,
-    }
 }
