@@ -1,4 +1,7 @@
-﻿namespace TextRPG
+﻿using TextRPG.Entity;
+using TextRPG.FSM;
+
+namespace TextRPG
 {
     public record DungeonInfo(
         string Name, 
@@ -21,9 +24,6 @@
 
         static void InitializeGame()
         {
-            // 캐릭터 초기화a
-            character = new Character();
-
             // 인벤토리 초기화 (List로 선언하여 유연성 확보)
             inventory = new List<Item>
             {
@@ -109,7 +109,6 @@
         {
             Console.Clear();
             Console.WriteLine("[상태 보기]\n");
-            character.DisplayInfo();
             Console.WriteLine("\n0. 나가기\n");
 
             Console.Write("원하시는 행동을 입력해주세요. ");
@@ -239,7 +238,7 @@
             Console.Clear();
             Console.WriteLine("[랜덤 모험]\n");
 
-            if (character.Adventure())
+            if (character.TakeStamina(5))
             {
                 int rand = random.Next(1, 101);
 
@@ -270,7 +269,7 @@
             Console.Clear();
             Console.WriteLine("[마을 순찰]\n");
 
-            if (character.Patrol())
+            if (character.TakeStamina(5))
             {
                 int rand = random.Next(1, 101);
 
@@ -319,7 +318,7 @@
             Console.Clear();
             Console.WriteLine("[훈련하기]\n");
 
-            if (character.Train())
+            if (character.TakeStamina(5))
             {
                 int rand = random.Next(1, 101);
 
@@ -678,16 +677,20 @@
 
         static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            SceneController sceneController = new SceneController();
+            sceneController.Start();
 
             // 게임 데이터 초기화
             InitializeGame();
 
             // 메인 게임 루프
-            while (isPlay)
+            while (!GameManager.Instance.IsGameOver)
             {
-                Enter();
+                sceneController.Update();
             }
+
+            Console.WriteLine("\n게임이 종료되었습니다.");
+            Console.WriteLine("플레이해주셔서 감사합니다!");
         }
     }
 }
