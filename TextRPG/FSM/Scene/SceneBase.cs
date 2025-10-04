@@ -23,6 +23,7 @@ namespace TextRPG.FSM.Scene
         public virtual void Enter()
         {
             // [템플릿] 씬 진입 시 화면 정리 및 메뉴 루프 시작
+            Console.SetCursorPosition(0, 0);
             Console.Clear();
             SetScene();
         }
@@ -30,6 +31,7 @@ namespace TextRPG.FSM.Scene
         public virtual void Update()
         {
             // 주 메뉴 루프 (템플릿)
+            Console.SetCursorPosition(0, 0);
             Console.Clear();
             View(); // 자식 클래스에서 메뉴 내용 정의
             Control(); // [템플릿] 입력 처리 및 상태 업데이트 로직 호출
