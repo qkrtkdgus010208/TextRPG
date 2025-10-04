@@ -28,7 +28,7 @@ namespace TextRPG.Entity
         public int BonusMaxHp { get; private set; }
         public int BonusMaxMp { get; private set; }
         public int BonusAttack { get; private set; }
-        public int BonusSkillAtack { get; private set; }
+        public int BonusSkillAttack { get; private set; }
         public int BonusArmor { get; private set; }
 
         // 인벤토리
@@ -62,16 +62,16 @@ namespace TextRPG.Entity
             BonusMaxHp += item.BonusMaxHp;
             BonusMaxMp += item.BonusMaxMp;
             BonusAttack += item.BonusAttack;
-            BonusSkillAtack += item.BonusSkillAttack;
+            BonusSkillAttack += item.BonusSkillAttack;
             BonusArmor += item.BonusArmor;
 
-            MaxHp += BonusMaxHp;
-            Hp += BonusMaxHp;
-            MaxMp += BonusMaxMp;
-            Mp += BonusMaxMp;
-            Attack += BonusAttack;
-            SkillAttack += BonusSkillAtack;
-            Armor += BonusArmor;
+            MaxHp += item.BonusMaxHp;
+            Hp += item.BonusMaxHp;
+            MaxMp += item.BonusMaxMp;
+            Mp += item.BonusMaxMp;
+            Attack += item.BonusAttack;
+            SkillAttack += item.BonusSkillAttack;
+            Armor += item.BonusArmor;
         }
 
         public void UnequipItem(EquipItem item)
@@ -81,16 +81,16 @@ namespace TextRPG.Entity
             BonusMaxHp -= item.BonusMaxHp;
             BonusMaxMp -= item.BonusMaxMp;
             BonusAttack -= item.BonusAttack;
-            BonusSkillAtack -= item.BonusSkillAttack;
+            BonusSkillAttack -= item.BonusSkillAttack;
             BonusArmor -= item.BonusArmor;
 
-            MaxHp -= BonusMaxHp;
-            Hp -= BonusMaxHp;
-            MaxMp -= BonusMaxMp;
-            Mp -= BonusMaxMp;
-            Attack -= BonusAttack;
-            SkillAttack -= BonusSkillAtack;
-            Armor -= BonusArmor;
+            MaxHp -= item.BonusMaxHp;
+            Hp -= item.BonusMaxHp;
+            MaxMp -= item.BonusMaxMp;
+            Mp -= item.BonusMaxMp;
+            Attack -= item.BonusAttack;
+            SkillAttack -= item.BonusSkillAttack;
+            Armor -= item.BonusArmor;
         }
 
         public int AddHp(int hp)
