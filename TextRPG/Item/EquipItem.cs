@@ -25,8 +25,8 @@ namespace TextRPG.Item
         public EquipItem(string name, string description, int price, ItemType type, JobType permitJob, EquipSlot slot, int bonusMaxHp = 0, int bonusMaxMp = 0, int bonusAttack = 0, int bonusSkillAttack = 0, int bonusArmor = 0)
             : base(name, description, price)
         {
-            // 무기, 방어구 타입만 받도록 제한
-            if (type == ItemType.Weapon || type == ItemType.Armor)
+            // 장비 타입만 받도록 제한
+            if (type == ItemType.Equip)
             {
                 Type = type;
                 PermitJob = permitJob;

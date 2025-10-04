@@ -9,9 +9,8 @@
 
     public enum ItemType
     {
-        Weapon,
-        Armor,
-        Potion,
+        Equip,
+        Consume,
         Etc,
     }
 
