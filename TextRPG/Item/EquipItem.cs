@@ -19,10 +19,11 @@ namespace TextRPG.Item
         public int BonusAttack { get; private set; }
         public int BonusSkillAttack { get; private set; }
         public int BonusArmor { get; private set; }
+        public int BonusMagicResistance { get; private set; }
 
         public bool IsEquipped { get; set; } = false;
 
-        public EquipItem(string name, string description, int price, ItemType type, JobType permitJob, EquipSlot slot, int bonusMaxHp = 0, int bonusMaxMp = 0, int bonusAttack = 0, int bonusSkillAttack = 0, int bonusArmor = 0)
+        public EquipItem(string name, string description, int price, ItemType type, JobType permitJob, EquipSlot slot, int bonusMaxHp = 0, int bonusMaxMp = 0, int bonusAttack = 0, int bonusSkillAttack = 0, int bonusArmor = 0, int bonusMagicResistance = 0)
             : base(name, description, price)
         {
             // 장비 타입만 받도록 제한
@@ -37,6 +38,7 @@ namespace TextRPG.Item
                 BonusAttack = bonusAttack;
                 BonusSkillAttack = bonusSkillAttack;
                 BonusArmor = bonusArmor;
+                BonusMagicResistance = bonusMagicResistance;
             }
             else
             {
@@ -63,6 +65,7 @@ namespace TextRPG.Item
             if (BonusAttack > 0) s += $" | 공격력 +{BonusAttack}";
             if (BonusSkillAttack > 0) s += $" | 주문력 +{BonusSkillAttack}";
             if (BonusArmor > 0) s += $" | 방어력 +{BonusArmor}";
+            if (BonusMagicResistance > 0) s += $" | 마법저항력 +{BonusArmor}";
             return s;
         }
     }

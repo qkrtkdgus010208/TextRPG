@@ -15,6 +15,7 @@ namespace TextRPG.Entity
         public int Attack { get; private set; }
         public int SkillAttack { get; private set; }
         public int Armor { get; private set; }
+        public int MagicResistance { get; private set; }
         public JobType Job { get; private set; }
 
         // 초기 세팅값
@@ -30,11 +31,12 @@ namespace TextRPG.Entity
         public int BonusAttack { get; private set; }
         public int BonusSkillAttack { get; private set; }
         public int BonusArmor { get; private set; }
+        public int BonusMagicResistance { get; private set; }
 
         // 인벤토리
         public Inventory Inventory { get; private set; }
 
-        public Character(string name, int maxHp, int maxMp, int attack, int skillAttack, int armor, JobType job)
+        public Character(string name, int maxHp, int maxMp, int attack, int skillAttack, int armor, int magicResistance, JobType job)
         {
             Name = name;
             MaxHp = maxHp;
@@ -44,6 +46,7 @@ namespace TextRPG.Entity
             Attack = attack;
             SkillAttack = skillAttack;
             Armor = armor;
+            MagicResistance = magicResistance;
             Job = job;
 
             Level = 1;
@@ -64,6 +67,7 @@ namespace TextRPG.Entity
             BonusAttack += item.BonusAttack;
             BonusSkillAttack += item.BonusSkillAttack;
             BonusArmor += item.BonusArmor;
+            BonusMagicResistance += item.BonusMagicResistance;
 
             MaxHp += item.BonusMaxHp;
             Hp += item.BonusMaxHp;
@@ -72,6 +76,7 @@ namespace TextRPG.Entity
             Attack += item.BonusAttack;
             SkillAttack += item.BonusSkillAttack;
             Armor += item.BonusArmor;
+            MagicResistance -= item.BonusMagicResistance;
         }
 
         public void UnequipItem(EquipItem item)
@@ -83,6 +88,7 @@ namespace TextRPG.Entity
             BonusAttack -= item.BonusAttack;
             BonusSkillAttack -= item.BonusSkillAttack;
             BonusArmor -= item.BonusArmor;
+            BonusMagicResistance += item.BonusMagicResistance;
 
             MaxHp -= item.BonusMaxHp;
             Hp -= item.BonusMaxHp;
@@ -91,6 +97,7 @@ namespace TextRPG.Entity
             Attack -= item.BonusAttack;
             SkillAttack -= item.BonusSkillAttack;
             Armor -= item.BonusArmor;
+            MagicResistance -= item.BonusMagicResistance;
         }
 
         public int AddHp(int hp)
@@ -220,6 +227,7 @@ namespace TextRPG.Entity
             s += $"공격력: {Attack} {(BonusAttack != 0 ? $"(+{BonusAttack})" : "")}\n";
             s += $"주문력: {SkillAttack} {(BonusAttack != 0 ? $"(+{BonusAttack})" : "")}\n";
             s += $"방어력: {Armor + BonusArmor} {(BonusArmor != 0 ? $"(+{BonusArmor})" : "")}\n";
+            s += $"마법저항력: {MagicResistance + BonusMagicResistance} {(BonusMagicResistance != 0 ? $"(+{BonusMagicResistance})" : "")}\n";
             s += $"Gold: {Gold} G\n";
             s += $"Exp: {Exp} / {MaxExp}\n";
             s += $"스테미나: {Stamina}\n";

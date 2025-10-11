@@ -40,21 +40,21 @@ namespace TextRPG.FSM.Scene.PlayerScene
                 {
                     // 전사
                     case "1":
-                        Character = new Character(name, 100, 20, 10, 3, 10, JobType.Warrior);
+                        Character = new Character(name, 100, 20, 10, 3, 10, 10, JobType.Warrior);
                         GameManager.Instance.InitializeCharacter(Character);
                         controller.ChangeSceneState(controller.VillageScene);
                         break;
 
                     // 궁수
                     case "2":
-                        Character = new Character(name, 80, 40, 8, 5, 8, JobType.Archer);
+                        Character = new Character(name, 80, 40, 8, 5, 8, 8, JobType.Archer);
                         GameManager.Instance.InitializeCharacter(Character);
                         controller.ChangeSceneState(controller.VillageScene);
                         break;
 
                     // 마법사
                     case "3":
-                        Character = new Character(name, 60, 60, 6, 10, 6,JobType.Mage);
+                        Character = new Character(name, 60, 60, 6, 10, 6, 6, JobType.Mage);
                         GameManager.Instance.InitializeCharacter(Character);
                         controller.ChangeSceneState(controller.VillageScene);
                         break;
