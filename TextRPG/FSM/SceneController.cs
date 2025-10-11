@@ -49,6 +49,7 @@ namespace TextRPG.FSM
             // 마을/활동 관련
             PatrolVillageScene = new PatrolVillageScene(this);
             RandomAdventureScene = new RandomAdventureScene(this);
+            RestScene = new RestScene(this);
             ShopBuyScene = new ShopBuyScene(this);
             ShopScene = new ShopScene(this);
             ShopSellScene = new ShopSellScene(this);

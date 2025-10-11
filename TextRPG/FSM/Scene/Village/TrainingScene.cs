@@ -5,6 +5,7 @@ namespace TextRPG.FSM.Scene
 {
     internal class TrainingScene : SceneBase
     {
+        private Character character;
         public TrainingScene(SceneController controller) : base(controller)
         {
         }
@@ -12,12 +13,11 @@ namespace TextRPG.FSM.Scene
         protected override void SetScene()
         {
             Console.Title = "훈련하기";
+            character = GameManager.Instance.Character;
         }
 
         protected override void View()
         {
-            Character character = GameManager.Instance.Character;
-
             Console.WriteLine("[훈련하기]\n");
 
             if (character.TakeStamina(15))

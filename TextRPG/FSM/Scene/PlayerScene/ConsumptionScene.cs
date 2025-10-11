@@ -29,7 +29,7 @@ namespace TextRPG.FSM.Scene.PlayerScene
             }
             Console.WriteLine();
 
-            Console.WriteLine("0. 나가기\n");
+            Console.WriteLine("0. 인벤토리로 돌아가기\n");
         }
 
         protected override void Control()
@@ -39,7 +39,7 @@ namespace TextRPG.FSM.Scene.PlayerScene
 
             if (input == "0")
             {
-                controller.ChangeSceneState(controller.VillageScene);
+                controller.ChangeSceneState(controller.InventoryScene);
                 return;
             }
 

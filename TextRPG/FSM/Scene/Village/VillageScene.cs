@@ -23,7 +23,7 @@
             Console.WriteLine("5. 훈련하기(스테미나 15 소요)");
             Console.WriteLine("6. 상점");
             Console.WriteLine("7. 던전 입장");
-            Console.WriteLine("8. 휴식하기");
+            Console.WriteLine("8. 휴식하기(500 G 소요)");
             Console.WriteLine("9. 게임 종료\n");
         }
 

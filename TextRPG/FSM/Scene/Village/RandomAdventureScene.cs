@@ -5,6 +5,8 @@ namespace TextRPG.FSM.Scene.Village
 {
     internal class RandomAdventureScene : SceneBase
     {
+        private Character character;
+
         public RandomAdventureScene(SceneController controller) : base(controller)
         {
         }
@@ -12,12 +14,11 @@ namespace TextRPG.FSM.Scene.Village
         protected override void SetScene()
         {
             Console.Title = "랜덤 모험";
+            character = GameManager.Instance.Character;
         }
 
         protected override void View()
         {
-            Character character = GameManager.Instance.Character;
-
             Console.WriteLine("[랜덤 모험]\n");
 
             if (character.TakeStamina(10))

@@ -5,6 +5,8 @@ namespace TextRPG.FSM.Scene.Village
 {
     internal class PatrolVillageScene : SceneBase
     {
+        private Character character;
+
         public PatrolVillageScene(SceneController controller) : base(controller)
         {
         }
@@ -12,12 +14,11 @@ namespace TextRPG.FSM.Scene.Village
         protected override void SetScene()
         {
             Console.Title = "마을 순찰";
+            character = GameManager.Instance.Character;
         }
 
         protected override void View()
         {
-            Character character = GameManager.Instance.Character;
-
             Console.WriteLine("[마을 순찰]\n");
 
             if (character.TakeStamina(5))
