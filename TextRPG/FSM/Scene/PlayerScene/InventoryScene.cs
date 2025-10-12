@@ -21,17 +21,25 @@ namespace TextRPG.FSM.Scene
         {
             Console.WriteLine("[인벤토리]\n");
 
-            Console.WriteLine("인벤 - 장비 아이템\n");
-            foreach (EquipItem item in inventory.GetEquipments())
+            Console.WriteLine("[인벤 - 장비 아이템]\n");
+            for (int i = 0; i < inventory.Items.Count; i++)
             {
-                string isEquipped = item.IsEquipped ? "[E]" : "";
-                Console.WriteLine($"{isEquipped}{item.DisplayInfo()}");
+                if (inventory.Items[i] is EquipItem item)
+                {
+                    string isEquipped = item.IsEquipped ? " [E]" : "";
+                    Console.WriteLine($"- {isEquipped} {item.DisplayInfo()}");
+                }
             }
             Console.WriteLine();
 
-            Console.WriteLine("인벤 - 소비 아이템\n");
-            foreach (ItemBase item in inventory.GetConsumes())
-                Console.WriteLine(item.DisplayInfo());
+            Console.WriteLine("[인벤 - 소비 아이템]\n");
+            for (int i = inventory.EquipItemCount; i < inventory.Items.Count; i++)
+            {
+                if (inventory.Items[i] is ConsumeItem item)
+                {
+                    Console.WriteLine($"- {item.DisplayInfo()}");
+                }
+            }
             Console.WriteLine();
 
             Console.WriteLine("0. 나가기");

@@ -28,16 +28,34 @@ namespace TextRPG.Entity
         // 인벤토리에 아이템 추가
         public void AddItem(ItemBase item)
         {
-            if (item is EquipItem)
+            if (item is EquipItem equipItem)
+            {
                 EquipItemCount++;
+                equipItem.IsBuy = true;
+            }
             if (item is ConsumeItem)
                 ConsumeItemCount++;
             Items.Add(item);
         }
 
+        // 아이템 판매
+        public void SellItem(ItemBase item)
+        {
+            if (item is EquipItem equipItem && equipItem.IsEquipped)
+            {
+                EquipItem(equipItem);
+                equipItem.IsBuy = false;
+            }
+            RemoveItem(item);
+        }
+
         // 인벤토리에서 아이템 제거
         private void RemoveItem(ItemBase item)
         {
+            if (item is EquipItem)
+                EquipItemCount--;
+            else
+                ConsumeItemCount--;
             Items.Remove(item);
         }
 
@@ -67,18 +85,6 @@ namespace TextRPG.Entity
         {
             item.Use(character);
             RemoveItem(item);
-        }
-
-        public IEnumerable<EquipItem> GetEquipments()
-        {
-            // LINQ의 OfType<T>() 메서드를 사용하여 Item 리스트에서 Equipment 타입만 추출합니다.
-            return Items.OfType<EquipItem>();
-        }
-
-        public IEnumerable<ConsumeItem> GetConsumes()
-        {
-            // LINQ의 OfType<T>() 메서드를 사용하여 Item 리스트에서 ConsumeItem 타입만 추출합니다.
-            return Items.OfType<ConsumeItem>();
         }
     }
 }

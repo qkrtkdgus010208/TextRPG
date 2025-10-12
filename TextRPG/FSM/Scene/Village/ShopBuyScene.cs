@@ -73,11 +73,25 @@ namespace TextRPG.FSM.Scene
 
                 if (character.Gold >= selectedItem.Price)
                 {
-                    character.TakeGold(selectedItem.Price);
-                    inventory.AddItem(selectedItem);
                     if (selectedItem is EquipItem item)
-                        item.IsBuy = true;
-                    Console.WriteLine("아이템을 구매하였습니다.");
+                    {
+                        if (!item.IsBuy)
+                        {
+                            character.TakeGold(selectedItem.Price);
+                            inventory.AddItem(selectedItem);
+                            Console.WriteLine("아이템을 구매하였습니다.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("이미 구매한 아이템입니다.");
+                        }
+                    }
+                    else
+                    {
+                        character.TakeGold(selectedItem.Price);
+                        inventory.AddItem(selectedItem);
+                        Console.WriteLine("아이템을 구매하였습니다.");
+                    }
                 }
                 else
                 {
