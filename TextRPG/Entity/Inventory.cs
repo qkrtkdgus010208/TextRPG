@@ -48,21 +48,18 @@ namespace TextRPG.Entity
             {
                 EquipItem equipedItem = equippedItems[item.equipSlot];
                 character.UnequipItem(equipedItem);
-                Console.WriteLine("착용 해제");
             }
 
             // 같은 아이템이면 해제
             if (equippedItems[item.equipSlot] == item)
             {
                 equippedItems[item.equipSlot] = null;
-                Console.WriteLine("착용 해제만");
             }
             // 다른 아이템이면 변경
             else
             {
                 equippedItems[item.equipSlot] = item;
                 character.EquipItem(item);
-                Console.WriteLine("착용");
             }
         }
 

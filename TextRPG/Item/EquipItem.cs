@@ -22,6 +22,7 @@ namespace TextRPG.Item
         public int BonusMagicResistance { get; private set; }
 
         public bool IsEquipped { get; set; } = false;
+        public bool IsBuy { get; set; } = false;
 
         public EquipItem(string name, string description, int price, ItemType type, JobType permitJob, EquipSlot slot, int bonusMaxHp = 0, int bonusMaxMp = 0, int bonusAttack = 0, int bonusSkillAttack = 0, int bonusArmor = 0, int bonusMagicResistance = 0)
             : base(name, description, price)
