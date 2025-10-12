@@ -76,7 +76,7 @@ namespace TextRPG.Entity
             Attack += item.BonusAttack;
             SkillAttack += item.BonusSkillAttack;
             Armor += item.BonusArmor;
-            MagicResistance -= item.BonusMagicResistance;
+            MagicResistance += item.BonusMagicResistance;
         }
 
         public void UnequipItem(EquipItem item)
@@ -88,7 +88,7 @@ namespace TextRPG.Entity
             BonusAttack -= item.BonusAttack;
             BonusSkillAttack -= item.BonusSkillAttack;
             BonusArmor -= item.BonusArmor;
-            BonusMagicResistance += item.BonusMagicResistance;
+            BonusMagicResistance -= item.BonusMagicResistance;
 
             MaxHp -= item.BonusMaxHp;
             Hp -= item.BonusMaxHp;
@@ -190,6 +190,7 @@ namespace TextRPG.Entity
                     Attack += 3;
                     SkillAttack += 1;
                     Armor += 3;
+                    MagicResistance += 3;
                     break;
                 case JobType.Archer:
                     MaxHp += 16;
@@ -197,6 +198,7 @@ namespace TextRPG.Entity
                     Attack += 2;
                     SkillAttack += 2;
                     Armor += 2;
+                    MagicResistance += 2;
                     break;
                 case JobType.Mage:
                     MaxHp += 12;
@@ -204,6 +206,7 @@ namespace TextRPG.Entity
                     Attack += 1;
                     SkillAttack += 3;
                     Armor += 1;
+                    MagicResistance += 1;
                     break;
             }
 
@@ -225,7 +228,7 @@ namespace TextRPG.Entity
             s += $"HP: {Hp} / {MaxHp} {(BonusMaxHp != 0 ? $"(+{BonusMaxHp})" : "")}\n";
             s += $"MP: {Mp} / {MaxMp} {(BonusMaxMp != 0 ? $"(+{BonusMaxMp})" : "")}\n";
             s += $"공격력: {Attack} {(BonusAttack != 0 ? $"(+{BonusAttack})" : "")}\n";
-            s += $"주문력: {SkillAttack} {(BonusAttack != 0 ? $"(+{BonusAttack})" : "")}\n";
+            s += $"주문력: {SkillAttack} {(BonusSkillAttack != 0 ? $"(+{BonusSkillAttack})" : "")}\n";
             s += $"방어력: {Armor + BonusArmor} {(BonusArmor != 0 ? $"(+{BonusArmor})" : "")}\n";
             s += $"마법저항력: {MagicResistance + BonusMagicResistance} {(BonusMagicResistance != 0 ? $"(+{BonusMagicResistance})" : "")}\n";
             s += $"Gold: {Gold} G\n";

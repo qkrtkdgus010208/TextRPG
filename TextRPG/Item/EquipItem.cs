@@ -66,7 +66,7 @@ namespace TextRPG.Item
             if (BonusAttack > 0) s += $" | 공격력 +{BonusAttack}";
             if (BonusSkillAttack > 0) s += $" | 주문력 +{BonusSkillAttack}";
             if (BonusArmor > 0) s += $" | 방어력 +{BonusArmor}";
-            if (BonusMagicResistance > 0) s += $" | 마법저항력 +{BonusArmor}";
+            if (BonusMagicResistance > 0) s += $" | 마법저항력 +{BonusMagicResistance}";
             return s;
         }
     }
