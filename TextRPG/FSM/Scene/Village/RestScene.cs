@@ -1,5 +1,4 @@
 ﻿using TextRPG.Entity;
-using TextRPG.Enum;
 
 namespace TextRPG.FSM.Scene.Village
 {

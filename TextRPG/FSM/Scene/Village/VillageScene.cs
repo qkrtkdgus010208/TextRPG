@@ -1,4 +1,5 @@
-﻿namespace TextRPG.FSM.Scene.Village
+﻿
+namespace TextRPG.FSM.Scene.Village
 {
     internal class VillageScene : SceneBase
     {

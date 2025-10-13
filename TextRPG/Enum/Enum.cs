@@ -1,4 +1,5 @@
-﻿namespace TextRPG.Enum
+﻿
+namespace TextRPG.Enum
 {
     public enum JobType
     {

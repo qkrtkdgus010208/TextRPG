@@ -1,4 +1,5 @@
-﻿namespace TextRPG.Interface
+﻿
+namespace TextRPG.Interface
 {
     internal interface ISceneState
     {

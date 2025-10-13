@@ -3,7 +3,6 @@ using TextRPG.Item;
 
 namespace TextRPG.Entity
 {
-
     internal class Character
     {
         // 생성자 주입

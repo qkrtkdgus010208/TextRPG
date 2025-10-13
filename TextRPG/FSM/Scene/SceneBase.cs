@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using TextRPG.Entity;
-using TextRPG.Interface;
+﻿using TextRPG.Interface;
 
 namespace TextRPG.FSM.Scene
 {

@@ -1,5 +1,4 @@
-﻿using System.Reflection.Emit;
-using TextRPG.Entity;
+﻿using TextRPG.Entity;
 
 namespace TextRPG.FSM.Scene.PlayerScene
 {

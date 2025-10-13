@@ -1,5 +1,4 @@
-﻿using TextRPG.Enum;
-
+﻿
 namespace TextRPG.Item
 {
     internal abstract class ItemBase

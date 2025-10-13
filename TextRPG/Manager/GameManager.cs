@@ -1,7 +1,4 @@
 ﻿using TextRPG.Entity;
-using TextRPG.FSM;
-using TextRPG.Interface;
-using TextRPG.Item;
 
 namespace TextRPG
 {
@@ -22,7 +19,6 @@ namespace TextRPG
 
         // 게임의 모든 데이터는 GameManager가 소유
         public Character Character { get; set; }
-        public List<ItemBase> Inventory { get; set; }
         public Shop Shop { get; set; }
         public bool IsGameOver { get; set; }
 
@@ -34,11 +30,6 @@ namespace TextRPG
         public void InitializeShop(Shop shop)
         {
             Shop = shop;
-        }
-
-        private void InitializeDungeons()
-        {
-            // ... (기존 초기화 로직)
         }
     }
 }

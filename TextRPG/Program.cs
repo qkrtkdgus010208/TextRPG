@@ -1,11 +1,9 @@
-﻿using TextRPG.Entity;
-using TextRPG.FSM;
+﻿using TextRPG.FSM;
 
 namespace TextRPG
 {
     internal class Program
     {
-       
         static void Main(string[] args)
         {
             SceneController sceneController = new SceneController();
