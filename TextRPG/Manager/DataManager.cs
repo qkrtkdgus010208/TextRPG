@@ -55,7 +55,6 @@ namespace TextRPG.Manager
                 equippedItems = inventory.equippedItems,
             };
 
-            // 4. JSON 직렬화 및 파일 저장
             try
             {
                 string jsonString = JsonConvert.SerializeObject(
