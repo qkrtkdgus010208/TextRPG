@@ -38,6 +38,6 @@ namespace TextRPG.Data
         public int ConsumeItemCount { get; set; }
 
         // 장비 슬롯
-        public Dictionary<EquipSlot, EquipItem> EquippedItems = new Dictionary<EquipSlot, EquipItem>();
+        public Dictionary<EquipSlot, EquipItem> EquippedItems { get; set; }
     }
 }
