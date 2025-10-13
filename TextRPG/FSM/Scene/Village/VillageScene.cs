@@ -1,8 +1,14 @@
 ﻿
+using TextRPG.Entity;
+using TextRPG.Manager;
+
 namespace TextRPG.FSM.Scene.Village
 {
     internal class VillageScene : SceneBase
     {
+        private Character character;
+        private Inventory inventory;
+
         public VillageScene(SceneController controller) : base(controller)
         {
         }
@@ -10,6 +16,8 @@ namespace TextRPG.FSM.Scene.Village
         protected override void SetScene()
         {
             Console.Title = "마을";
+            character = GameManager.Instance.Character;
+            inventory = GameManager.Instance.Character.Inventory;
         }
 
         protected override void View()
@@ -25,7 +33,8 @@ namespace TextRPG.FSM.Scene.Village
             Console.WriteLine("6. 상점");
             Console.WriteLine("7. 던전 입장");
             Console.WriteLine("8. 휴식하기(500 G 소요)");
-            Console.WriteLine("9. 게임 종료\n");
+            Console.WriteLine("9. 저장 및 게임 종료");
+            Console.WriteLine("10. 데이터 불러오기\n");
         }
 
         protected override void Control()
@@ -60,7 +69,18 @@ namespace TextRPG.FSM.Scene.Village
                     controller.ChangeSceneState(controller.RestScene);
                     break;
                 case "9":
+                    DataManager.Instance.SaveGame(character, inventory);
                     GameManager.Instance.IsGameOver = true;
+                    break;
+                case "10":
+                    if (DataManager.Instance.LoadGame(out character, out inventory))
+                    {
+                        GameManager.Instance.InitializeCharacter(character);
+                        Console.WriteLine("데이터 로딩에 성공하였습니다.");
+                    }
+                    else
+                        Console.WriteLine("데이터 로딩에 실패하였습니다.");
+                    Sleep();
                     break;
                 default:
                     Console.WriteLine("잘못된 입력입니다.");

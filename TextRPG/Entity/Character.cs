@@ -1,4 +1,5 @@
-﻿using TextRPG.Enum;
+﻿using TextRPG.Data;
+using TextRPG.Enum;
 using TextRPG.Item;
 
 namespace TextRPG.Entity
@@ -222,6 +223,7 @@ namespace TextRPG.Entity
         public string DisplayInfo()
         {
             string s = string.Empty;
+            s += $"닉네임: {Name}\n";
             s += $"Lv. {Level}\n";
             s += $"직업: {Job}\n";
             s += $"HP: {Hp} / {MaxHp} {(BonusMaxHp != 0 ? $"(+{BonusMaxHp})" : "")}\n";
@@ -234,6 +236,31 @@ namespace TextRPG.Entity
             s += $"Exp: {Exp} / {MaxExp}\n";
             s += $"스테미나: {Stamina}\n";
             return s;
+        }
+
+        public static Character LoadData(CharacterData data)
+        {
+            Character character = new Character(data.Name, data.MaxHp, data.MaxMp, data.Attack, data.SkillAttack, data.Armor, data.MagicResistance, data.Job);
+
+            character.Level = data.Level;
+            character.Gold = data.Gold;
+            character.MaxExp = data.MaxExp;
+            character.Exp = data.Exp;
+            character.Stamina = data.Stamina;
+
+            character.BonusMaxHp = data.BonusMaxHp;
+            character.BonusMaxMp = data.BonusMaxMp;
+            character.BonusAttack = data.BonusAttack;
+            character.BonusSkillAttack = data.BonusSkillAttack;
+            character.BonusArmor = data.BonusArmor;
+            character.BonusMagicResistance = data.BonusMagicResistance;
+
+            Inventory inventory = new Inventory(character);
+            inventory.Items = data.Items;
+            inventory.EquipItemCount = data.EquipItemCount;
+            inventory.ConsumeItemCount = data.ConsumeItemCount;
+            inventory.equippedItems = data.equippedItems;
+            return character;
         }
     }
 }

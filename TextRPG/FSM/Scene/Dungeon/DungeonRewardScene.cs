@@ -30,7 +30,7 @@ namespace TextRPG.FSM.Scene
 
         protected override void SetScene()
         {
-            Console.Title = "던전 클리어";
+            Console.Title = "던전 결과";
             character = GameManager.Instance.Character;
 
             dungeonName = string.Empty;
@@ -61,7 +61,7 @@ namespace TextRPG.FSM.Scene
 
         protected override void View()
         {
-            Console.WriteLine("[던전 클리어]\n");
+            Console.WriteLine("[던전 결과]\n");
 
             if (Calculate())
             {

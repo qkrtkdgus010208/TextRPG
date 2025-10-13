@@ -5,13 +5,13 @@ namespace TextRPG.Entity
 {
     internal class Inventory
     {
-        public List<ItemBase> Items { get; private set; } = new List<ItemBase>();
+        public List<ItemBase> Items { get; set; } = new List<ItemBase>();
 
-        public int EquipItemCount { get; private set; }
-        public int ConsumeItemCount { get; private set; }
+        public int EquipItemCount { get; set; }
+        public int ConsumeItemCount { get; set; }
 
         // 장비 슬롯
-        private readonly Dictionary<EquipSlot, EquipItem> equippedItems = new Dictionary<EquipSlot, EquipItem>();
+        public Dictionary<EquipSlot, EquipItem> equippedItems = new Dictionary<EquipSlot, EquipItem>();
 
         private readonly Character character;
 
