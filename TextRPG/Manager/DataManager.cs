@@ -52,7 +52,7 @@ namespace TextRPG.Manager
                 Items = inventory.Items,
                 EquipItemCount = inventory.EquipItemCount,
                 ConsumeItemCount = inventory.ConsumeItemCount,
-                equippedItems = inventory.equippedItems,
+                EquippedItems = inventory.EquippedItems,
             };
 
             try

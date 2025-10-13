@@ -11,7 +11,7 @@ namespace TextRPG.Entity
         public int ConsumeItemCount { get; set; }
 
         // 장비 슬롯
-        public Dictionary<EquipSlot, EquipItem> equippedItems = new Dictionary<EquipSlot, EquipItem>();
+        public Dictionary<EquipSlot, EquipItem> EquippedItems = new Dictionary<EquipSlot, EquipItem>();
 
         private readonly Character character;
 
@@ -21,7 +21,7 @@ namespace TextRPG.Entity
 
             foreach (EquipSlot slot in System.Enum.GetValues(typeof(EquipSlot)))
             {
-                equippedItems.Add(slot, null);
+                EquippedItems.Add(slot, null);
             }
         }
 
@@ -62,21 +62,21 @@ namespace TextRPG.Entity
         public void EquipItem(EquipItem item)
         {
             // 슬롯에 아이템을 장착 중이면 해제
-            if (equippedItems[item.equipSlot] != null)
+            if (EquippedItems[item.equipSlot] != null)
             {
-                EquipItem equipedItem = equippedItems[item.equipSlot];
+                EquipItem equipedItem = EquippedItems[item.equipSlot];
                 character.UnequipItem(equipedItem);
             }
 
             // 같은 아이템이면 해제
-            if (equippedItems[item.equipSlot] == item)
+            if (EquippedItems[item.equipSlot] == item)
             {
-                equippedItems[item.equipSlot] = null;
+                EquippedItems[item.equipSlot] = null;
             }
             // 다른 아이템이면 변경
             else
             {
-                equippedItems[item.equipSlot] = item;
+                EquippedItems[item.equipSlot] = item;
                 character.EquipItem(item);
             }
         }

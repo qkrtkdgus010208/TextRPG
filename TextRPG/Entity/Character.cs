@@ -259,7 +259,7 @@ namespace TextRPG.Entity
             inventory.Items = data.Items;
             inventory.EquipItemCount = data.EquipItemCount;
             inventory.ConsumeItemCount = data.ConsumeItemCount;
-            inventory.equippedItems = data.equippedItems;
+            inventory.EquippedItems = data.EquippedItems;
             return character;
         }
     }
