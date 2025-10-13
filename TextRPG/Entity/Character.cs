@@ -255,11 +255,10 @@ namespace TextRPG.Entity
             character.BonusArmor = data.BonusArmor;
             character.BonusMagicResistance = data.BonusMagicResistance;
 
-            Inventory inventory = new Inventory(character);
-            inventory.Items = data.Items;
-            inventory.EquipItemCount = data.EquipItemCount;
-            inventory.ConsumeItemCount = data.ConsumeItemCount;
-            inventory.EquippedItems = data.EquippedItems;
+            character.Inventory.Items = data.Items;
+            character.Inventory.EquipItemCount = data.EquipItemCount;
+            character.Inventory.ConsumeItemCount = data.ConsumeItemCount;
+            character.Inventory.EquippedItems = data.EquippedItems;
             return character;
         }
     }
