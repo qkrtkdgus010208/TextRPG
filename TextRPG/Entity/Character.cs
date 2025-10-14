@@ -238,6 +238,11 @@ namespace TextRPG.Entity
             return s;
         }
 
+        public void SetInventory(Inventory inventory)
+        {
+            Inventory = inventory;
+        }
+
         public static Character LoadData(CharacterData data)
         {
             Character character = new Character(data.Name, data.MaxHp, data.MaxMp, data.Attack, data.SkillAttack, data.Armor, data.MagicResistance, data.Job);
@@ -255,10 +260,6 @@ namespace TextRPG.Entity
             character.BonusArmor = data.BonusArmor;
             character.BonusMagicResistance = data.BonusMagicResistance;
 
-            character.Inventory.Items = data.Items;
-            character.Inventory.EquipItemCount = data.EquipItemCount;
-            character.Inventory.ConsumeItemCount = data.ConsumeItemCount;
-            character.Inventory.EquippedItems = data.EquippedItems;
             return character;
         }
     }
