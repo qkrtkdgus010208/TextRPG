@@ -60,8 +60,6 @@ namespace TextRPG.Entity
 
         public void EquipItem(EquipItem item)
         {
-            item.IsEquipped = true;
-
             BonusMaxHp += item.BonusMaxHp;
             BonusMaxMp += item.BonusMaxMp;
             BonusAttack += item.BonusAttack;
@@ -81,8 +79,6 @@ namespace TextRPG.Entity
 
         public void UnequipItem(EquipItem item)
         {
-            item.IsEquipped = false;
-
             BonusMaxHp -= item.BonusMaxHp;
             BonusMaxMp -= item.BonusMaxMp;
             BonusAttack -= item.BonusAttack;

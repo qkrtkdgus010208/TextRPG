@@ -69,7 +69,7 @@ namespace TextRPG.Entity
 
         // 아이템 판매
         public void SellItem(ItemBase item)
-        {
+        { 
             if (item is EquipItem equipItem)
             {
                 if (equipItem.IsEquipped)
@@ -92,21 +92,23 @@ namespace TextRPG.Entity
         public void EquipItem(EquipItem item)
         {
             // 슬롯에 아이템을 장착 중이면 해제
-            if (EquippedItems[item.equipSlot] != null)
+            if (EquippedItems[item.EquipSlot] != null)
             {
-                EquipItem equipedItem = EquippedItems[item.equipSlot];
-                character.UnequipItem(equipedItem);
+                EquippedItems[item.EquipSlot].IsEquipped = false;
+                character.UnequipItem(EquippedItems[item.EquipSlot]);
             }
 
             // 같은 아이템이면 해제
-            if (EquippedItems[item.equipSlot] == item)
+            if (EquippedItems[item.EquipSlot] == item)
             {
-                EquippedItems[item.equipSlot] = null;
+                EquippedItems[item.EquipSlot].IsEquipped = false;
+                EquippedItems[item.EquipSlot] = null;
             }
             // 다른 아이템이면 변경
             else
             {
-                EquippedItems[item.equipSlot] = item;
+                EquippedItems[item.EquipSlot] = item;
+                EquippedItems[item.EquipSlot].IsEquipped = true;
                 character.EquipItem(item);
             }
         }

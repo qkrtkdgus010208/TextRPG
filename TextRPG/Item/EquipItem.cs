@@ -6,7 +6,7 @@ namespace TextRPG.Item
     {
         public ItemType Type { get; private set; }
         public JobType PermitJob { get; private set; }
-        public EquipSlot equipSlot { get; private set; }
+        public EquipSlot EquipSlot { get; private set; }
 
         // 능력치 보너스 필드
         public int BonusMaxHp { get; private set; }
@@ -27,7 +27,7 @@ namespace TextRPG.Item
             {
                 Type = type;
                 PermitJob = permitJob;
-                equipSlot = slot;
+                EquipSlot = slot;
 
                 BonusMaxHp = bonusMaxHp;
                 BonusMaxMp = bonusMaxMp;
